@@ -7,6 +7,7 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
+    Serial.write("ESP8266\n");
     Serial.write(Serial.read());
   }
 }

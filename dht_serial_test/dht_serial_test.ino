@@ -24,12 +24,11 @@ void loop() {
   Serial.print("Humidity: ");
   Serial.print(h);
   Serial.print("%");
-  Serial.print("Temp: ");
+  Serial.print("\nTemp: ");
   Serial.print(t);
-  Serial.print("%");
-  Serial.println("C");
+  Serial.println("C\n");
   
-  str = String("Humidity: ") + String(h) + String("Temp: ")+ String(t);
+  str = String("Data from Arduino\n") + String("Humidity: ") + String(h) + String("\nTemp: ") + String(t) + String("C\n");
   espSerial.println(str);
   delay(1000);
 }
