@@ -2,11 +2,15 @@
 #include<WiFiClient.h>
 #include<ESP8266WebServer.h>
 #include <ArduinoJson.h>
+
 const char* ssid = "wifi-ssid";
 const char* password = "wifi-pass";
+
 ESP8266WebServer server(80);
+
 String page = "";
 int data1, data2, data3;
+
 void setup()
 {
   Serial.begin(9600);
@@ -30,6 +34,7 @@ while (WiFi.status() != WL_CONNECTED)
   });
   server.begin();
 }
+
 void loop()
 {
   StaticJsonBuffer<1000> jsonBuffer;
