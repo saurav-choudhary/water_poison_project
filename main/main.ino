@@ -7,7 +7,7 @@ DallasTemperature temp_sensor(&oneWire);
 
 float calibration_value = 27.84;
 int phVal = 0;
-unsigned long int avgval;
+unsigned long int avgVal;
 int buffer_arr[10], temp;
 
 void setup()
@@ -37,6 +37,7 @@ void loop() {
       }
     }
   }
+  
   avgval = 0;
   
   for (int i = 2; i < 8; i++)
