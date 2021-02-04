@@ -3,14 +3,12 @@
 #include<ESP8266WebServer.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "wifi-ssid";
-const char* password = "wifi-pass";
+const char* ssid = "TP-Link_F94A";
+const char* password = "94780284abfg";
 
 ESP8266WebServer server(80);
-
 String page = "";
 int data1, data2, data3;
-
 void setup()
 {
   Serial.begin(9600);
@@ -23,7 +21,7 @@ while (WiFi.status() != WL_CONNECTED)
   Serial.println(WiFi.localIP());
   server.on("/", []()
   {
-    page = "<html><head><title>Water Poison Project - IoT Lab KIIT</title></head><style type=\"text/css\">";
+    page = "<html><head><title>IoT Lab KIIT</title></head><style type=\"text/css\">";
     page += "table{border-collapse: collapse;}th {background-color:  green ;color: white;}table,td {border: 4px solid black;font-size: x-large;";
     page += "text-align:center;border-style: groove;border-color: rgb(255,0,0);}</style><body><center>";
     page += "<h1>Smart Aquaculture Monitoring using IoT</h1><br><br><table style=\"width: 1200px;height: 450px;\"><tr>";
@@ -34,7 +32,6 @@ while (WiFi.status() != WL_CONNECTED)
   });
   server.begin();
 }
-
 void loop()
 {
   StaticJsonBuffer<1000> jsonBuffer;
@@ -44,9 +41,9 @@ void loop()
     return;
     Serial.println("invalid");
   }
-  data1 = root["ph"];
-  data2 = root["temp"];
-  data3 = root["moist"];
+  data1 = root["a1"];
+  data2 = root["a2"];
+  data3 = root["a3"];
   Serial.println(data1);
   Serial.println(data2);
   Serial.println(data3);
