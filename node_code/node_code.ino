@@ -2,10 +2,8 @@
 #include<WiFiClient.h>
 #include<ESP8266WebServer.h>
 #include <ArduinoJson.h>
-
-const char* ssid = "TP-Link_F94A";
-const char* password = "94780284abfg";
-
+const char* ssid = "tplinkf94a";//Replace with your network SSID
+const char* password = "8804072840";//Replace with your network password
 ESP8266WebServer server(80);
 String page = "";
 int data1, data2, data3;

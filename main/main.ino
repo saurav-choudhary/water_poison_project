@@ -1,17 +1,21 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <ArduinoJson.h>
+
 OneWire oneWire(2);
 DallasTemperature temp_sensor(&oneWire);
+
 float calibration_value = 21.34;
 int phval = 0;
 unsigned long int avgval;
 int buffer_arr[10], temp;
+
 void setup()
 {
   Serial.begin(9600);
   temp_sensor.begin();
 }
+
 StaticJsonBuffer<1000> jsonBuffer;
 JsonObject& root = jsonBuffer.createObject();
 void loop() {
@@ -40,9 +44,11 @@ void loop() {
   temp_sensor.requestTemperatures();
   int moisture_analog=analogRead(A1);
   int moist_act=map(moisture_analog,0,1023,100,0);
+  
   root["a1"] = ph_act;
   root["a2"] = temp_sensor.getTempCByIndex(0);
   root["a3"] = moist_act;
   root.printTo(Serial);
   Serial.println("");
+  
 }
