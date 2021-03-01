@@ -1,7 +1,12 @@
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 #include <ArduinoJson.h>
 #include <ESP8266WiFi.h>
 #include "secrets.h"
 #include "ThingSpeak.h" // always include thingspeak header file after other header files and custom macros
+
+char auth[] = "YourAuthToken";
 
 char ssid[] = SECRET_SSID;   // your network SSID (name) 
 char pass[] = SECRET_PASS;   // your network password
@@ -17,11 +22,12 @@ int data1, data2, data3; // sensor data from serial
 int number1 = 0;
 int number2 = random(0,100);
 int number3 = random(0,100);
-int number4 = random(0,100);
+int number4 = random(0,100); // random values for unavail sensors
 String myStatus = "";
 
 void setup() {
   Serial.begin(115200);  // Initialize serial
+  Blynk.begin(auth, ssid, pass);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo native USB port only
   }
@@ -41,6 +47,7 @@ void loop() {
       delay(5000);     
     } 
     Serial.println("\nConnected.");
+    Blynk.run();
   }
   
   //Data from arduino
@@ -97,4 +104,5 @@ void loop() {
   number4 = random(0,100);
   
   delay(20000); // Wait 20 seconds to update the channel again
+
 }

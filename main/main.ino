@@ -9,11 +9,13 @@ float calibration_value = 21.34;
 int phval = 0;
 unsigned long int avgval;
 int buffer_arr[10], temp;
+int relay_pin = 8;
 
 void setup()
 {
   Serial.begin(9600);
   temp_sensor.begin();
+  pinMode(relay_pin, OUTPUT);
 }
 
 StaticJsonBuffer<1000> jsonBuffer;
@@ -50,5 +52,9 @@ void loop() {
   root["a3"] = moist_act;
   root.printTo(Serial);
   Serial.println("");
+
+  if(ph_act < 6.5 && ph_act > 8) {
+    digitalWrite(relay_pin, HIGH);
+  }
   
 }
